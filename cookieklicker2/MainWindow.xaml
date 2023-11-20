@@ -17,7 +17,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Cursor.png" Width="20" Height="20"/>
-                        <TextBlock Text="Cursor: 15" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="txtCursorCost" Text="Cursor: 15" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </StackPanel>
                     <TextBlock x:Name="txtCursorCount" Text="Count: 0"/>
                 </StackPanel>
@@ -34,7 +34,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Grandma.png" Width="20" Height="20"/>
-                        <TextBlock Text="Grandma: 100" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="txtGrandmaCost" Text="Grandma: 100" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </StackPanel>
                     <TextBlock x:Name="txtGrandmaCount" Text="Count: 0"/>
                 </StackPanel>
@@ -52,7 +52,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Farm.png" Width="20" Height="20"/>
-                        <TextBlock Text="Farm: 1100" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="txtFarmCost" Text="Farm: 1100" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </StackPanel>
                     <TextBlock x:Name="txtFarmCount" Text="Count: 0"/>
                 </StackPanel>
@@ -70,7 +70,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Mine.png" Width="20" Height="20"/>
-                        <TextBlock Text="Mine: 12000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="txtMineCost" Text="Mine: 12000" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </StackPanel>
                     <TextBlock x:Name="txtMineCount" Text="Count: 0"/>
                 </StackPanel>
@@ -88,7 +88,7 @@
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Factory.png" Width="20" Height="20"/>
-                        <TextBlock Text="Factory: 130000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                        <TextBlock x:Name="txtFactoryCost" Text="Factory: 130000" VerticalAlignment="Center" Margin="10,0,0,0"/>
                     </StackPanel>
                     <TextBlock x:Name="txtFactoryCount" Text="Count: 0"/>
                 </StackPanel>

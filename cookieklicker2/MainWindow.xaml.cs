@@ -30,9 +30,15 @@ namespace cookieklicker2
 
         private void imgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
+           
+        }
+
+        private void imgCookie_MouseUp(object sender, MouseButtonEventArgs e)
+        {
             _cookieCount++;
             txtCookieCount.Text = _cookieCount + " Cookies";
             this.Title = _cookieCount + " Cookies";
         }
     }
 }
+

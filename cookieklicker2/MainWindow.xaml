@@ -6,11 +6,13 @@
         xmlns:local="clr-namespace:cookieklicker2"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\achtergrond.jpg"/>
+    </Window.Background>
     <Grid>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock x:Name="txtCookieCount" Text="0 Cookies" HorizontalAlignment="Center"/>
-            <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" Width="100" Height="100"/>
+        <TextBlock x:Name="txtCookieCount" Text="0 Cookies" HorizontalAlignment="LEFT" FontSize="50"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">          
+            <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" Width="200" Height="200"/>
         </StackPanel>
     </Grid>
 </Window>
-

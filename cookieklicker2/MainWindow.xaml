@@ -12,5 +12,38 @@
     <Grid>
         <TextBlock x:Name="txtCookieCount" Text="0 Cookies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" FontSize="50"/>
         <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50"/>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+            <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Cursor.png" Width="20" Height="20"/>
+                    <TextBlock Text="Cursor: 15" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnGrandma" Width="200" Height="50" Margin="0,10,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Grandma.png" Width="20" Height="20"/>
+                    <TextBlock Text="Grandma: 100" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnFarm" Width="200" Height="50" Margin="0,10,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Farm.png" Width="20" Height="20"/>
+                    <TextBlock Text="Farm: 1100" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnMine" Width="200" Height="50" Margin="0,10,0,10">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Mine.png" Width="20" Height="20"/>
+                    <TextBlock Text="Mine: 12000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+            <Button x:Name="btnFactory" Width="200" Height="50" Margin="0,10,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Factory.png" Width="20" Height="20"/>
+                    <TextBlock Text="Factory: 130000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace cookieklicker2
 {
@@ -25,6 +26,12 @@ namespace cookieklicker2
         private double _originalWidth;
         private double _originalHeight;
         private bool _isMouseDown = false;
+
+        private int _cursorCount = 0;
+        private int _grandmaCount = 0;
+        private int _farmCount = 0;
+        private int _mineCount = 0;
+        private int _factoryCount = 0;
 
         public MainWindow()
         {
@@ -52,7 +59,81 @@ namespace cookieklicker2
             imgCookie.Width = _originalWidth;
             imgCookie.Height = _originalHeight;
 
-            
+            UpdateButtons();
+        }
+
+        private void btnCursor_Click(object sender, RoutedEventArgs e)
+        {
+            if (_cookieCount >= 15)
+            {
+                _cookieCount -= 15;
+                _cursorCount++;
+                txtCookieCount.Text = _cookieCount + " Cookies";
+                this.Title = _cookieCount + " Cookies";
+                txtCursorCount.Text = "Count: " + _cursorCount;
+
+                UpdateButtons();
+            }
+        }
+
+        private void btnGrandma_Click(object sender, RoutedEventArgs e)
+        {
+            if (_cookieCount >= 100)
+            {
+                _cookieCount -= 100;
+                _grandmaCount++;
+                txtCookieCount.Text = _cookieCount + " Cookies";
+                this.Title = _cookieCount + " Cookies";
+                txtGrandmaCount.Text = "Count: " + _grandmaCount;
+
+                UpdateButtons();
+            }
+        }
+
+        private void btnFarm_Click(object sender, RoutedEventArgs e)
+        {
+            if (_cookieCount >= 1100)
+            {
+                _cookieCount -= 1100;
+                _farmCount++;
+                txtCookieCount.Text = _cookieCount + " Cookies";
+                this.Title = _cookieCount + " Cookies";
+                txtFarmCount.Text = "Count: " + _farmCount;
+
+                UpdateButtons();
+            }
+        }
+
+        private void btnMine_Click(object sender, RoutedEventArgs e)
+        {
+            if (_cookieCount >= 12000)
+            {
+                _cookieCount -= 12000;
+                _mineCount++;
+                txtCookieCount.Text = _cookieCount + " Cookies";
+                this.Title = _cookieCount + " Cookies";
+                txtMineCount.Text = "Count: " + _mineCount;
+
+                UpdateButtons();
+            }
+        }
+
+        private void btnFactory_Click(object sender, RoutedEventArgs e)
+        {
+            if (_cookieCount >= 130000)
+            {
+                _cookieCount -= 130000;
+                _factoryCount++;
+                txtCookieCount.Text = _cookieCount + " Cookies";
+                this.Title = _cookieCount + " Cookies";
+                txtFactoryCount.Text = "Count: " + _factoryCount;
+
+                UpdateButtons();
+            }
+        }
+
+        private void UpdateButtons()
+        {
             btnCursor.IsEnabled = _cookieCount >= 15;
             btnGrandma.IsEnabled = _cookieCount >= 100;
             btnFarm.IsEnabled = _cookieCount >= 1100;
@@ -61,4 +142,3 @@ namespace cookieklicker2
         }
     }
 }
-

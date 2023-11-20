@@ -24,6 +24,7 @@ namespace cookieklicker2
         private int _cookieCount = 0;
         private double _originalWidth;
         private double _originalHeight;
+        private bool _isMouseDown = false;
 
         public MainWindow()
         {
@@ -34,17 +35,29 @@ namespace cookieklicker2
 
         private void imgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            _cookieCount++;
-            txtCookieCount.Text = _cookieCount + " Cookies";
-            this.Title = _cookieCount + " Cookies";
+            _isMouseDown = true;
             imgCookie.Width = _originalWidth * 0.9;
             imgCookie.Height = _originalHeight * 0.9;
         }
 
         private void imgCookie_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            if (_isMouseDown)
+            {
+                _cookieCount++;
+                txtCookieCount.Text = _cookieCount + " Cookies";
+                this.Title = _cookieCount + " Cookies";
+            }
+            _isMouseDown = false;
             imgCookie.Width = _originalWidth;
             imgCookie.Height = _originalHeight;
+
+            
+            btnCursor.IsEnabled = _cookieCount >= 15;
+            btnGrandma.IsEnabled = _cookieCount >= 100;
+            btnFarm.IsEnabled = _cookieCount >= 1100;
+            btnMine.IsEnabled = _cookieCount >= 12000;
+            btnFactory.IsEnabled = _cookieCount >= 130000;
         }
     }
 }

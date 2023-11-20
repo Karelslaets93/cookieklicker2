@@ -10,10 +10,7 @@
         <ImageBrush ImageSource="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\achtergrond.jpg"/>
     </Window.Background>
     <Grid>
-        <TextBlock x:Name="txtCookieCount" Text="0 Cookies" HorizontalAlignment="left" FontSize="50"/>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-            
-            <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="200" Height="200"/>
-        </StackPanel>
+        <TextBlock x:Name="txtCookieCount" Text="0 Cookies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" FontSize="50"/>
+        <Image x:Name="imgCookie" Margin="20" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Center"/>
     </Grid>
 </Window>

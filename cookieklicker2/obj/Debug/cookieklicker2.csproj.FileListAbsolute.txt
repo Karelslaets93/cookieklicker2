@@ -1,0 +1,15 @@
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2.csproj.AssemblyReference.cache
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\MainWindow.g.cs
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\App.g.cs
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2_MarkupCompile.cache
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2_MarkupCompile.lref
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\bin\Debug\cookieklicker2.exe.config
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\bin\Debug\cookieklicker2.exe
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\bin\Debug\cookieklicker2.pdb
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\MainWindow.baml
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2.g.resources
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2.Properties.Resources.resources
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2.csproj.GenerateResource.cache
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2.csproj.CoreCompileInputs.cache
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2.exe
+C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\obj\Debug\cookieklicker2.pdb

@@ -10,9 +10,55 @@
         <ImageBrush ImageSource="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\achtergrond.jpg"/>
     </Window.Background>
     <Grid>
-        <TextBlock x:Name="txtCookieCount" Text="0 Cookies" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" FontSize="50"/>
-        <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="200" Height="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50"/>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="center" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Eerste vak -->
+        <StackPanel Grid.Column="0" Orientation="Vertical">
+            <TextBlock x:Name="txtCookieCount" Text="0" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  Foreground="White"/>
+            <TextBlock x:Name="txtCookieLabel" Text="Cookies" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30" FontWeight="Bold" Foreground="White"/>
+            <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="250" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
+            <TextBlock x:Name="txtCookiesPerSecond" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="10" FontWeight="Bold" Foreground="White"/>
+        </StackPanel>
+        
+
+        <!-- Middelste vak -->
+        <Grid Grid.Column="1" Background="LightGray">
+            <!-- Voeg hier de inhoud van het middelste vak toe -->
+        </Grid>
+
+        <!-- Derde vak -->
+        <StackPanel Grid.Column="2">
+            <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                <Grid>
+                    <ProgressBar x:Name="progressBar" Minimum="0" Maximum="100" Value="0" Width="AUTO" Height="AUTO">
+                        <ProgressBar.Style>
+                            <Style TargetType="{x:Type ProgressBar}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ProgressBar}">
+                                            <Grid x:Name="PART_Track">
+                                                <Rectangle x:Name="PART_Indicator" HorizontalAlignment="Left">
+                                                    <Rectangle.Fill>
+                                                        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                                            <GradientStop Color="Transparent" Offset="0"/>
+                                                            <GradientStop Color="Black" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </Rectangle.Fill>
+                                                </Rectangle>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ProgressBar.Style>
+                    </ProgressBar>
+                    <TextBlock Text="Game Store" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Padding="5"/>
+                </Grid>
+            </Border>
             <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,0,0,10" IsEnabled="False" Click="btnCursor_Click">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
@@ -25,7 +71,7 @@
                     <ToolTip>
                         <StackPanel>
                             <TextBlock Text="Cookies per second: 0.1"/>
-                            <TextBlock x:Name="txtCursorCountTooltip" Text="Count: 0"/>
+                            <TextBlock x:Name="txtCursorCountTooltip"/>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
@@ -42,12 +88,11 @@
                     <ToolTip>
                         <StackPanel>
                             <TextBlock Text="Cookies per second: 1"/>
-                            <TextBlock x:Name="txtGrandmaCountTooltip" Text="Count: 0"/>
+                            <TextBlock x:Name="txtGrandmaCountTooltip"/>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
-
             <Button x:Name="btnFarm" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnFarm_Click">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
@@ -60,12 +105,11 @@
                     <ToolTip>
                         <StackPanel>
                             <TextBlock Text="Cookies per second: 8"/>
-                            <TextBlock x:Name="txtFarmCountTooltip" Text="Count: 0"/>
+                            <TextBlock x:Name="txtFarmCountTooltip"/>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
-
             <Button x:Name="btnMine" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnMine_Click">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
@@ -78,12 +122,11 @@
                     <ToolTip>
                         <StackPanel>
                             <TextBlock Text="Cookies per second: 47"/>
-                            <TextBlock x:Name="txtMineCountTooltip" Text="Count: 0"/>
+                            <TextBlock x:Name="txtMineCountTooltip"/>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
-
             <Button x:Name="btnFactory" Width="200" Height="50" Margin="0,10,0,0" IsEnabled="False" Click="btnFactory_Click">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
@@ -96,12 +139,12 @@
                     <ToolTip>
                         <StackPanel>
                             <TextBlock Text="Cookies per second: 260"/>
-                            <TextBlock x:Name="txtFactoryCountTooltip" Text="Count: 0"/>
+                            <TextBlock x:Name="txtFactoryCountTooltip"/>
                         </StackPanel>
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
-
+            
         </StackPanel>
     </Grid>
 </Window>

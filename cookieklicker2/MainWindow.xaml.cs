@@ -25,7 +25,7 @@ namespace cookieklicker2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double _cookieCount =100000000000000000;
+        private double _cookieCount = 0;
         private double _originalWidth;
         private double _originalHeight;
         private bool _isMouseDown = false;
@@ -184,11 +184,11 @@ namespace cookieklicker2
 
         private void UpdateButtons()
         {
-            int cursorPrijs = (int)Math.Ceiling(15 * Math.Pow(1.15, _cursorCount));
-            int grandmaPrijs = (int)Math.Ceiling(100 * Math.Pow(1.15, _grandmaCount));
-            int farmPrijs = (int)Math.Ceiling(1100 * Math.Pow(1.15, _farmCount));
-            int minePrijs = (int)Math.Ceiling(12000 * Math.Pow(1.15, _mineCount));
-            long factoryPrijs = (long)Math.Ceiling(130000 * Math.Pow(1.15, _factoryCount));
+            double cursorPrijs = (double)Math.Ceiling(15 * Math.Pow(1.15, _cursorCount));
+            double grandmaPrijs = (double)Math.Ceiling(100 * Math.Pow(1.15, _grandmaCount));
+            double farmPrijs = (double)Math.Ceiling(1100 * Math.Pow(1.15, _farmCount));
+            double minePrijs = (double)Math.Ceiling(12000 * Math.Pow(1.15, _mineCount));
+            double factoryPrijs = (double)Math.Ceiling(130000 * Math.Pow(1.15, _factoryCount));
 
             btnCursor.IsEnabled = _cookieCount >= cursorPrijs;
             btnGrandma.IsEnabled = _cookieCount >= grandmaPrijs;
@@ -205,7 +205,16 @@ namespace cookieklicker2
 
         private string FormatNumber(double num)
         {
-            if (num >= 1e12)
+            if (num >= 1e18)
+            {
+                return Math.Round(num / 1e18, 3).ToString("0.###") + " Quintillion";
+            }
+            else if (num >= 1e15)
+            {
+                return Math.Round(num / 1e15, 3).ToString("0.###") + " Quadrillion";
+            }
+
+            else if (num >= 1e12)
             {
                 return Math.Round(num / 1e12, 3).ToString("0.###") + " Triljoen";
             }
@@ -234,8 +243,7 @@ namespace cookieklicker2
         private void UpdateCookiesPerSecond()
         {
             double cookiesPerSecond = _cursorCount * 0.1 + _grandmaCount * 1 + _farmCount * 8 + _mineCount * 47 + _factoryCount * 260;
-            txtCookiesPerSecond.Text = cookiesPerSecond + " cookies/second";
+            txtCookiesPerSecond.Text = string.Format("{0:0.0}", cookiesPerSecond) + " cookies/second";
         }
-
     }
 }

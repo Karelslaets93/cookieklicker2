@@ -25,7 +25,9 @@ namespace cookieklicker2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double _cookieCount = 0;
+
+
+        private double _cookieCount = 10000000000000;
         private double _originalWidth;
         private double _originalHeight;
         private bool _isMouseDown = false;
@@ -34,8 +36,35 @@ namespace cookieklicker2
         private int _farmCount = 0;
         private int _mineCount = 0;
         private int _factoryCount = 0;
+        private int _bankCount = 0;
+        private int _templeCount = 0;
 
         private DispatcherTimer _timer;
+        private Dictionary<string, StackPanel> upgradePanels = new Dictionary<string, StackPanel>();
+        private List<string> upgradeOrder = new List<string>
+        {
+            "Cursor",
+            "Grandma",
+            "Farm",
+            "Mine",
+            "Factory",
+            "Bank",
+            "Tempel" 
+        };
+
+        private List<Brush> backgroundColors = new List<Brush>
+        {
+            Brushes.LightBlue,
+            Brushes.LightCoral,
+            Brushes.LightGreen,
+            Brushes.LightYellow,
+            Brushes.LightPink,
+            Brushes.LimeGreen
+
+         };
+
+     
+        private int nextColorIndex = 0;
 
         public MainWindow()
         {
@@ -57,7 +86,22 @@ namespace cookieklicker2
             doubleAnimation.RepeatBehavior = RepeatBehavior.Forever;
 
             progressBar.BeginAnimation(ProgressBar.ValueProperty, doubleAnimation);
+
+            foreach (string upgradeName in upgradeOrder)
+            {
+                StackPanel panel = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Margin = new Thickness(0, 10, 0, 10),  
+                    Background = backgroundColors[nextColorIndex]  
+                };
+                nextColorIndex = (nextColorIndex + 1) % backgroundColors.Count;
+                upgradePanels[upgradeName] = panel;
+                upgradeImagesPanel.Children.Add(panel);
+            }
         }
+
+
 
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -68,6 +112,8 @@ namespace cookieklicker2
             opbrengstPerTick += _farmCount * 0.08;
             opbrengstPerTick += _mineCount * 0.47;
             opbrengstPerTick += _factoryCount * 2.6;
+            opbrengstPerTick += _bankCount * 14;
+            opbrengstPerTick += _templeCount * 780;
 
             _cookieCount += opbrengstPerTick;
             UpdateCookieCount();
@@ -111,6 +157,7 @@ namespace cookieklicker2
 
                 UpdateButtons();
                 UpdateCookiesPerSecond();
+                AddUpgradeImage("Cursor");
             }
         }
 
@@ -128,6 +175,7 @@ namespace cookieklicker2
 
                 UpdateButtons();
                 UpdateCookiesPerSecond();
+                AddUpgradeImage("Grandma");
             }
         }
 
@@ -145,6 +193,7 @@ namespace cookieklicker2
 
                 UpdateButtons();
                 UpdateCookiesPerSecond();
+                AddUpgradeImage("Farm");
             }
         }
 
@@ -162,6 +211,7 @@ namespace cookieklicker2
 
                 UpdateButtons();
                 UpdateCookiesPerSecond();
+                AddUpgradeImage("Mine");
             }
         }
 
@@ -179,6 +229,43 @@ namespace cookieklicker2
 
                 UpdateButtons();
                 UpdateCookiesPerSecond();
+                AddUpgradeImage("Factory");
+            }
+        }
+
+        private void btnBank_Click(object sender, RoutedEventArgs e)
+        {
+            int basisprijs = 1400000;
+            int nieuwePrijs = (int)Math.Ceiling(basisprijs * Math.Pow(1.15, _bankCount));
+
+            if (_cookieCount >= nieuwePrijs)
+            {
+                _cookieCount -= nieuwePrijs;
+                _bankCount++;
+                UpdateCookieCount();
+                txtBankCount.Text = "Count: " + _bankCount;
+
+                UpdateButtons();
+                UpdateCookiesPerSecond();
+                AddUpgradeImage("Bank");
+            }
+        }
+
+        private void btnTemple_Click(object sender, RoutedEventArgs e)
+        {
+            int basisprijs = 20000000;
+            int nieuwePrijs = (int)Math.Ceiling(basisprijs * Math.Pow(1.15, _templeCount));
+
+            if (_cookieCount >= nieuwePrijs)
+            {
+                _cookieCount -= nieuwePrijs;
+                _templeCount++;
+                UpdateCookieCount();
+                txtTempleCount.Text = "Count: " + _templeCount;
+
+                UpdateButtons();
+                UpdateCookiesPerSecond();
+                AddUpgradeImage("Tempel");
             }
         }
 
@@ -189,18 +276,31 @@ namespace cookieklicker2
             double farmPrijs = (double)Math.Ceiling(1100 * Math.Pow(1.15, _farmCount));
             double minePrijs = (double)Math.Ceiling(12000 * Math.Pow(1.15, _mineCount));
             double factoryPrijs = (double)Math.Ceiling(130000 * Math.Pow(1.15, _factoryCount));
+            double bankPrijs = (double)Math.Ceiling(1400000 * Math.Pow(1.15, _bankCount));
+            double templePrijs = (double)Math.Ceiling(20000000 * Math.Pow(1.15, _templeCount));
+
+
+
+            btnBank.Visibility = _cookieCount >= bankPrijs ? Visibility.Visible : Visibility.Collapsed;
+            btnTemple.Visibility = _cookieCount >= templePrijs ? Visibility.Visible : Visibility.Collapsed;
+
+
 
             btnCursor.IsEnabled = _cookieCount >= cursorPrijs;
             btnGrandma.IsEnabled = _cookieCount >= grandmaPrijs;
             btnFarm.IsEnabled = _cookieCount >= farmPrijs;
             btnMine.IsEnabled = _cookieCount >= minePrijs;
             btnFactory.IsEnabled = _cookieCount >= factoryPrijs;
+            btnBank.IsEnabled = _cookieCount >= bankPrijs;
+            btnTemple.IsEnabled = _cookieCount >= templePrijs;
 
             txtCursorCost.Text = "Cursor: " + FormatNumber(cursorPrijs);
             txtGrandmaCost.Text = "Grandma: " + FormatNumber(grandmaPrijs);
             txtFarmCost.Text = "Farm: " + FormatNumber(farmPrijs);
             txtMineCost.Text = "Mine: " + FormatNumber(minePrijs);
             txtFactoryCost.Text = "Factory: " + FormatNumber(factoryPrijs);
+            txtBankCost.Text = "Bank: " + FormatNumber(bankPrijs);
+            txtTempleCost.Text = "Temple: " + FormatNumber(templePrijs);
         }
 
         private string FormatNumber(double num)
@@ -240,9 +340,29 @@ namespace cookieklicker2
         }
 
 
+
+
+        // Maak een dictionary om een StackPanel voor elke upgrade bij te houden
+
+
+        private void AddUpgradeImage(string upgradeName)
+        {
+            // Maak een nieuwe Image control
+            System.Windows.Controls.Image upgradeImage = new System.Windows.Controls.Image();
+            // Stel de bron van de afbeelding in op basis van de naam van de upgrade
+            upgradeImage.Source = new BitmapImage(new Uri($"C:\\Users\\karel\\Documents\\c#\\cookieklicker2\\cookieklicker2\\CookieClickerAfb\\{upgradeName}.png"));
+            // Stel de breedte en hoogte van de afbeelding in
+            upgradeImage.Width = 50;  // Verander dit naar de gewenste breedte
+            upgradeImage.Height = 50; // Verander dit naar de gewenste hoogte
+
+            // Voeg de afbeelding toe aan de juiste StackPanel
+            upgradePanels[upgradeName].Children.Add(upgradeImage);
+        }
+
+
         private void UpdateCookiesPerSecond()
         {
-            double cookiesPerSecond = _cursorCount * 0.1 + _grandmaCount * 1 + _farmCount * 8 + _mineCount * 47 + _factoryCount * 260;
+            double cookiesPerSecond = _cursorCount * 0.1 + _grandmaCount * 1 + _farmCount * 8 + _mineCount * 47 + _factoryCount * 260 + _templeCount * 7800 + _bankCount *1400;
             txtCookiesPerSecond.Text = string.Format("{0:0.0}", cookiesPerSecond) + " cookies/second";
         }
     }

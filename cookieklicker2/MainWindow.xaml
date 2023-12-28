@@ -19,16 +19,24 @@
         <!-- Eerste vak -->
         <Grid Grid.Column="0">
             <StackPanel Orientation="Vertical">
-                <TextBlock x:Name="txtCookieCount" Text="0" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  Foreground="White"/>
-                <TextBlock x:Name="txtCookieLabel" Text="Cookies" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30" FontWeight="Bold" Foreground="White"/>
-                <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="250" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
+                <TextBlock x:Name="txtCookieCount" Text="0" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  Foreground="Yellow"/>
+                <TextBlock x:Name="txtCookieLabel" Text="Cookies" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30" FontWeight="Bold" Foreground="Yellow"/>
+                <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="230" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
             </StackPanel>
             <TextBlock x:Name="txtCookiesPerSecond" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="20" FontWeight="Bold" Foreground="White"/>
         </Grid>
 
 
         <!-- Middelste vak -->
-        <Grid Grid.Column="1" Background="LightGray">
+        <Grid Grid.Column="1" Background="#80D3D3D3">
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer.Resources>
+                    <Style TargetType="ScrollBar">
+                        <Setter Property="Background" Value="Transparent"/>
+                    </Style>
+                </ScrollViewer.Resources>
+                <StackPanel x:Name="upgradeImagesPanel" Orientation="Vertical"/>
+            </ScrollViewer>
             <!-- Voeg hier de inhoud van het middelste vak toe -->
         </Grid>
 
@@ -58,95 +66,118 @@
                             </Style>
                         </ProgressBar.Style>
                     </ProgressBar>
-                    <TextBlock Text="Game Store" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" Padding="5"/>
+                    <TextBlock Text="Game Store" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Foreground="GreenYellow" VerticalAlignment="Center" Padding="5"/>
                 </Grid>
             </Border>
-            <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,0,0,10" IsEnabled="False" Click="btnCursor_Click">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Cursor.png" Width="20" Height="20"/>
-                        <TextBlock x:Name="txtCursorCost" Text="Cursor: 15" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <TextBlock x:Name="txtCursorCount" Text="Count: 0"/>
-                </StackPanel>
-                <Button.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock Text="Cookies per second: 0.1"/>
-                            <TextBlock x:Name="txtCursorCountTooltip"/>
+
+            <ScrollViewer Grid.Column="2" Height="300" >
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                    <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,50,0,10" IsEnabled="False" Click="btnCursor_Click">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Cursor.png" Width="20" Height="20"/>
+                                <TextBlock x:Name="txtCursorCost" Text="Cursor: 15" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="txtCursorCount" Text="Count: 0"/>
                         </StackPanel>
-                    </ToolTip>
-                </Button.ToolTip>
-            </Button>
-            <Button x:Name="btnGrandma" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnGrandma_Click">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Grandma.png" Width="20" Height="20"/>
-                        <TextBlock x:Name="txtGrandmaCost" Text="Grandma: 100" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <TextBlock x:Name="txtGrandmaCount" Text="Count: 0"/>
-                </StackPanel>
-                <Button.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock Text="Cookies per second: 1"/>
-                            <TextBlock x:Name="txtGrandmaCountTooltip"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Cookies per second: 0.1"/>
+                                    <TextBlock x:Name="txtCursorCountTooltip"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnGrandma" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnGrandma_Click">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Grandma.png" Width="20" Height="20"/>
+                                <TextBlock x:Name="txtGrandmaCost" Text="Grandma: 100" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="txtGrandmaCount" Text="Count: 0"/>
                         </StackPanel>
-                    </ToolTip>
-                </Button.ToolTip>
-            </Button>
-            <Button x:Name="btnFarm" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnFarm_Click">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Farm.png" Width="20" Height="20"/>
-                        <TextBlock x:Name="txtFarmCost" Text="Farm: 1100" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <TextBlock x:Name="txtFarmCount" Text="Count: 0"/>
-                </StackPanel>
-                <Button.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock Text="Cookies per second: 8"/>
-                            <TextBlock x:Name="txtFarmCountTooltip"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Cookies per second: 1"/>
+                                    <TextBlock x:Name="txtGrandmaCountTooltip"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnFarm" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnFarm_Click">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Farm.png" Width="20" Height="20"/>
+                                <TextBlock x:Name="txtFarmCost" Text="Farm: 1100" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="txtFarmCount" Text="Count: 0"/>
                         </StackPanel>
-                    </ToolTip>
-                </Button.ToolTip>
-            </Button>
-            <Button x:Name="btnMine" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnMine_Click">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Mine.png" Width="20" Height="20"/>
-                        <TextBlock x:Name="txtMineCost" Text="Mine: 12000" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <TextBlock x:Name="txtMineCount" Text="Count: 0"/>
-                </StackPanel>
-                <Button.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock Text="Cookies per second: 47"/>
-                            <TextBlock x:Name="txtMineCountTooltip"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Cookies per second: 8"/>
+                                    <TextBlock x:Name="txtFarmCountTooltip"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnMine" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnMine_Click">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Mine.png" Width="20" Height="20"/>
+                                <TextBlock x:Name="txtMineCost" Text="Mine: 12000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="txtMineCount" Text="Count: 0"/>
                         </StackPanel>
-                    </ToolTip>
-                </Button.ToolTip>
-            </Button>
-            <Button x:Name="btnFactory" Width="200" Height="50" Margin="0,10,0,0" IsEnabled="False" Click="btnFactory_Click">
-                <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Factory.png" Width="20" Height="20"/>
-                        <TextBlock x:Name="txtFactoryCost" Text="Factory: 130000" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    </StackPanel>
-                    <TextBlock x:Name="txtFactoryCount" Text="Count: 0"/>
-                </StackPanel>
-                <Button.ToolTip>
-                    <ToolTip>
-                        <StackPanel>
-                            <TextBlock Text="Cookies per second: 260"/>
-                            <TextBlock x:Name="txtFactoryCountTooltip"/>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Cookies per second: 47"/>
+                                    <TextBlock x:Name="txtMineCountTooltip"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnFactory" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnFactory_Click">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Factory.png" Width="20" Height="20"/>
+                                <TextBlock x:Name="txtFactoryCost" Text="Factory: 130000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="txtFactoryCount" Text="Count: 0"/>
                         </StackPanel>
-                    </ToolTip>
-                </Button.ToolTip>
-            </Button>
-            
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Cookies per second: 260"/>
+                                    <TextBlock x:Name="txtFactoryCountTooltip"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button x:Name="btnBank" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnBank_Click" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\bank.png" Width="20" Height="20"/>
+                                <TextBlock x:Name="txtBankCost" Text="Bank: 1400000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="txtBankCount" Text="Count: 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="btnTemple" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnTemple_Click" Visibility="Collapsed">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\tempel.png" Width="20" Height="20"/>
+                                <TextBlock x:Name="txtTempleCost" Text="Temple: 20000000" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                            <TextBlock x:Name="txtTempleCount" Text="Count: 0"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </ScrollViewer>
+
         </StackPanel>
     </Grid>
 </Window>

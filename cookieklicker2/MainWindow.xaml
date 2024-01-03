@@ -19,11 +19,15 @@
         <!-- Eerste vak -->
         <Grid Grid.Column="0">
             <StackPanel Orientation="Vertical">
+                <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                <Label x:Name="lblBakeryName" Content="PXL-Bakery" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="GreenYellow" MouseDown="lblBakeryName_MouseDown"/>
+                </Border>
                 <TextBlock x:Name="txtCookieCount" Text="0" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  Foreground="Yellow"/>
                 <TextBlock x:Name="txtCookieLabel" Text="Cookies" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30" FontWeight="Bold" Foreground="Yellow"/>
-                <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="230" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20"/>
+                <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="230" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                
             </StackPanel>
-            <TextBlock x:Name="txtCookiesPerSecond" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="20" FontWeight="Bold" Foreground="White"/>
+            <TextBlock x:Name="txtCookiesPerSecond" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="20" FontWeight="Bold" Foreground="Yellow"/>
         </Grid>
 
 
@@ -37,7 +41,6 @@
                 </ScrollViewer.Resources>
                 <StackPanel x:Name="upgradeImagesPanel" Orientation="Vertical"/>
             </ScrollViewer>
-            <!-- Voeg hier de inhoud van het middelste vak toe -->
         </Grid>
 
         <!-- Derde vak -->
@@ -165,6 +168,14 @@
                             </StackPanel>
                             <TextBlock x:Name="txtBankCount" Text="Count: 0"/>
                         </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Cookies per second: 1400"/>
+                                    <TextBlock x:Name="txtBankCountTooltip"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
                     <Button x:Name="btnTemple" Width="200" Height="50" Margin="0,10,0,10" IsEnabled="False" Click="btnTemple_Click" Visibility="Collapsed">
                         <StackPanel Orientation="Vertical">
@@ -174,6 +185,14 @@
                             </StackPanel>
                             <TextBlock x:Name="txtTempleCount" Text="Count: 0"/>
                         </StackPanel>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock Text="Cookies per second: 7800"/>
+                                    <TextBlock x:Name="txtTempelCountTooltip"/>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
                     </Button>
                 </StackPanel>
             </ScrollViewer>

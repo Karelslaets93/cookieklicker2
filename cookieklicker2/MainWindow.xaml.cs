@@ -25,9 +25,7 @@ namespace cookieklicker2
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
-        private double _cookieCount = 10000000000000;
+        private double _cookieCount = 100000000;
         private double _originalWidth;
         private double _originalHeight;
         private bool _isMouseDown = false;
@@ -38,9 +36,12 @@ namespace cookieklicker2
         private int _factoryCount = 0;
         private int _bankCount = 0;
         private int _templeCount = 0;
-
         private DispatcherTimer _timer;
+
+
         private Dictionary<string, StackPanel> upgradePanels = new Dictionary<string, StackPanel>();
+
+
         private List<string> upgradeOrder = new List<string>
         {
             "Cursor",
@@ -69,6 +70,7 @@ namespace cookieklicker2
         public MainWindow()
         {
             InitializeComponent();
+
             _originalWidth = imgCookie.Width;
             _originalHeight = imgCookie.Height;
 
@@ -100,9 +102,6 @@ namespace cookieklicker2
                 upgradeImagesPanel.Children.Add(panel);
             }
         }
-
-
-
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -341,21 +340,34 @@ namespace cookieklicker2
 
 
 
+        private void lblBakeryName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            
+            string newBakeryName = Microsoft.VisualBasic.Interaction.InputBox("Geef een nieuwe naam aan je bakkerij:", "Bakkerij Naam", lblBakeryName.Content.ToString());
 
-        // Maak een dictionary om een StackPanel voor elke upgrade bij te houden
+            if (!string.IsNullOrWhiteSpace(newBakeryName))
+            {
+                lblBakeryName.Content = newBakeryName;
+            }
+            else
+            {
+                MessageBox.Show("Naam mag niet leeg zijn of uit witruimte bestaan", "Foutieve Naam", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+
 
 
         private void AddUpgradeImage(string upgradeName)
         {
-            // Maak een nieuwe Image control
+           
             System.Windows.Controls.Image upgradeImage = new System.Windows.Controls.Image();
-            // Stel de bron van de afbeelding in op basis van de naam van de upgrade
+           
             upgradeImage.Source = new BitmapImage(new Uri($"C:\\Users\\karel\\Documents\\c#\\cookieklicker2\\cookieklicker2\\CookieClickerAfb\\{upgradeName}.png"));
-            // Stel de breedte en hoogte van de afbeelding in
-            upgradeImage.Width = 50;  // Verander dit naar de gewenste breedte
-            upgradeImage.Height = 50; // Verander dit naar de gewenste hoogte
+  
+            upgradeImage.Width = 50;  
+            upgradeImage.Height = 50; 
 
-            // Voeg de afbeelding toe aan de juiste StackPanel
             upgradePanels[upgradeName].Children.Add(upgradeImage);
         }
 
@@ -364,6 +376,7 @@ namespace cookieklicker2
         {
             double cookiesPerSecond = _cursorCount * 0.1 + _grandmaCount * 1 + _farmCount * 8 + _mineCount * 47 + _factoryCount * 260 + _templeCount * 7800 + _bankCount *1400;
             txtCookiesPerSecond.Text = string.Format("{0:0.0}", cookiesPerSecond) + " cookies/second";
+            
         }
     }
 }

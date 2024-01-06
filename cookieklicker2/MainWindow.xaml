@@ -20,7 +20,10 @@
         <Viewbox Stretch="Uniform" Grid.Column="0" Name="cookieViewbox">
             <Grid>
                 <StackPanel Orientation="Vertical">
-                    <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                    <Canvas x:Name="cookieCanvas" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <!-- Cookies zullen hier worden toegevoegd -->
+                    </Canvas>
+                    <Border Background="#80D3D3D3" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
                         <Label x:Name="lblBakeryName" Content="PXL-Bakery" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="GreenYellow" MouseDown="lblBakeryName_MouseDown"/>
                     </Border>
                     <TextBlock x:Name="txtCookieCount" Text="0" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  Foreground="Yellow"/>

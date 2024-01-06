@@ -26,7 +26,7 @@ namespace cookieklicker2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double _cookieCount = 1000000000;
+        private double _cookieCount =0;
         private bool _isMouseDown = false;
         private int _cursorCount = 0;
         private int _grandmaCount = 0;
@@ -107,6 +107,39 @@ namespace cookieklicker2
             }
         }
 
+        private List<System.Windows.Controls.Image> fallingCookies = new List<System.Windows.Controls.Image>();
+
+        private void GenerateFallingCookie()
+        {
+            if (fallingCookies.Count >= 50)
+            {
+                return;
+            }
+
+            System.Windows.Controls.Image fallingCookie = new System.Windows.Controls.Image();
+            fallingCookie.Source = new BitmapImage(new Uri("C:\\Users\\karel\\Documents\\c#\\cookieklicker2\\cookieklicker2\\CookieClickerAfb\\cookie.png"));
+            fallingCookie.Width = 20;
+            fallingCookie.Height = 20;
+
+            Canvas.SetTop(fallingCookie, 0);
+            Canvas.SetLeft(fallingCookie, new Random().Next(0, (int)cookieViewbox.ActualWidth));
+
+            cookieCanvas.Children.Add(fallingCookie);
+            fallingCookies.Add(fallingCookie);
+
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = cookieViewbox.ActualHeight;
+            doubleAnimation.Duration = TimeSpan.FromSeconds(3);
+            doubleAnimation.Completed += (sender, e) =>
+            {
+                cookieCanvas.Children.Remove(fallingCookie);
+                fallingCookies.Remove(fallingCookie);
+            };
+
+            fallingCookie.BeginAnimation(Canvas.TopProperty, doubleAnimation);
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             double opbrengstPerTick = 0;
@@ -124,7 +157,9 @@ namespace cookieklicker2
             UpdateButtons();
         }
 
-        private void imgCookie_MouseDown(object sender, MouseButtonEventArgs e)
+    
+
+    private void imgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
             _isMouseDown = true;
             imgCookie.RenderTransform = new ScaleTransform(0.9, 0.9);
@@ -136,13 +171,14 @@ namespace cookieklicker2
             {
                 _cookieCount++;
                 UpdateCookieCount();
+                // Genereer een cookie bij elke klik
+                GenerateFallingCookie();
             }
             _isMouseDown = false;
             imgCookie.RenderTransform = new ScaleTransform(1, 1);
 
             UpdateButtons();
         }
-
         private void btnCursor_Click(object sender, RoutedEventArgs e)
         {
             int basisprijs = 15;

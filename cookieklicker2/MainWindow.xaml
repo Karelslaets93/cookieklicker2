@@ -17,18 +17,20 @@
         </Grid.ColumnDefinitions>
 
         <!-- Eerste vak -->
-        <Grid Grid.Column="0">
-            <StackPanel Orientation="Vertical">
-                <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
-                <Label x:Name="lblBakeryName" Content="PXL-Bakery" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="GreenYellow" MouseDown="lblBakeryName_MouseDown"/>
-                </Border>
-                <TextBlock x:Name="txtCookieCount" Text="0" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  Foreground="Yellow"/>
-                <TextBlock x:Name="txtCookieLabel" Text="Cookies" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30" FontWeight="Bold" Foreground="Yellow"/>
-                <Image x:Name="imgCookie" Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="230" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-                
-            </StackPanel>
-            <TextBlock x:Name="txtCookiesPerSecond" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="20" FontWeight="Bold" Foreground="Yellow"/>
-        </Grid>
+        <Viewbox Stretch="Uniform" Grid.Column="0" Name="cookieViewbox">
+            <Grid>
+                <StackPanel Orientation="Vertical">
+                    <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+                        <Label x:Name="lblBakeryName" Content="PXL-Bakery" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="GreenYellow" MouseDown="lblBakeryName_MouseDown"/>
+                    </Border>
+                    <TextBlock x:Name="txtCookieCount" Text="0" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30"  Foreground="Yellow"/>
+                    <TextBlock x:Name="txtCookieLabel" Text="Cookies" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30" FontWeight="Bold" Foreground="Yellow"/>
+                    <Image x:Name="imgCookie" Source="C:\\Users\\karel\\Documents\\c#\\cookieklicker2\\cookieklicker2\\CookieClickerAfb\\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="230" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                </StackPanel>
+                <TextBlock x:Name="txtCookiesPerSecond" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="10" FontWeight="Bold" Foreground="Yellow"/>
+            </Grid>
+        </Viewbox>
+
 
 
         <!-- Middelste vak -->
@@ -44,8 +46,9 @@
         </Grid>
 
         <!-- Derde vak -->
-        <StackPanel Grid.Column="2">
-            <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
+        <Viewbox Grid.Column="2">
+            <StackPanel>
+                <Border Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5">
                 <Grid>
                     <ProgressBar x:Name="progressBar" Minimum="0" Maximum="100" Value="0" Width="AUTO" Height="AUTO">
                         <ProgressBar.Style>
@@ -73,9 +76,9 @@
                 </Grid>
             </Border>
 
-            <ScrollViewer Grid.Column="2" Height="300" >
+                <ScrollViewer Grid.Column="2" Height="300" VerticalScrollBarVisibility="Auto" >
                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,50,0,10" IsEnabled="False" Click="btnCursor_Click">
+                    <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,30,0,10" IsEnabled="False" Click="btnCursor_Click">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Cursor.png" Width="20" Height="20"/>
@@ -194,9 +197,10 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                </StackPanel>
-            </ScrollViewer>
+                    </StackPanel>
+                </ScrollViewer>
 
-        </StackPanel>
+            </StackPanel>
+        </Viewbox>
     </Grid>
 </Window>

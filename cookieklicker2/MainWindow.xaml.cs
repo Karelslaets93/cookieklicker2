@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
@@ -25,9 +26,7 @@ namespace cookieklicker2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double _cookieCount = 100000000;
-        private double _originalWidth;
-        private double _originalHeight;
+        private double _cookieCount = 1000000000;
         private bool _isMouseDown = false;
         private int _cursorCount = 0;
         private int _grandmaCount = 0;
@@ -37,7 +36,13 @@ namespace cookieklicker2
         private int _bankCount = 0;
         private int _templeCount = 0;
         private DispatcherTimer _timer;
-
+        private bool _hasCursorEverBeenVisible = false;
+        private bool _hasGrandmaEverBeenVisible = false;
+        private bool _hasFarmEverBeenVisible = false;
+        private bool _hasMineEverBeenVisible = false;
+        private bool _hasFactoryEverBeenVisible = false;
+        private bool _hasBankEverBeenVisible = false;
+        private bool _hasTempleEverBeenVisible = false;
 
         private Dictionary<string, StackPanel> upgradePanels = new Dictionary<string, StackPanel>();
 
@@ -71,8 +76,7 @@ namespace cookieklicker2
         {
             InitializeComponent();
 
-            _originalWidth = imgCookie.Width;
-            _originalHeight = imgCookie.Height;
+
 
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(10);
@@ -123,8 +127,7 @@ namespace cookieklicker2
         private void imgCookie_MouseDown(object sender, MouseButtonEventArgs e)
         {
             _isMouseDown = true;
-            imgCookie.Width = _originalWidth * 0.9;
-            imgCookie.Height = _originalHeight * 0.9;
+            imgCookie.RenderTransform = new ScaleTransform(0.9, 0.9);
         }
 
         private void imgCookie_MouseUp(object sender, MouseButtonEventArgs e)
@@ -135,11 +138,9 @@ namespace cookieklicker2
                 UpdateCookieCount();
             }
             _isMouseDown = false;
-            imgCookie.Width = _originalWidth;
-            imgCookie.Height = _originalHeight;
+            imgCookie.RenderTransform = new ScaleTransform(1, 1);
 
             UpdateButtons();
-
         }
 
         private void btnCursor_Click(object sender, RoutedEventArgs e)
@@ -279,9 +280,47 @@ namespace cookieklicker2
             double templePrijs = (double)Math.Ceiling(20000000 * Math.Pow(1.15, _templeCount));
 
 
+            if (_cookieCount >= cursorPrijs)
+            {
+                _hasCursorEverBeenVisible = true;
+            }
+            btnCursor.Visibility = _hasCursorEverBeenVisible ? Visibility.Visible : Visibility.Collapsed;
 
-            btnBank.Visibility = _cookieCount >= bankPrijs ? Visibility.Visible : Visibility.Collapsed;
-            btnTemple.Visibility = _cookieCount >= templePrijs ? Visibility.Visible : Visibility.Collapsed;
+            if (_cookieCount >= grandmaPrijs)
+            {
+                _hasGrandmaEverBeenVisible = true;
+            }
+            btnGrandma.Visibility = _hasGrandmaEverBeenVisible ? Visibility.Visible : Visibility.Collapsed;
+
+            if (_cookieCount >= farmPrijs)
+            {
+                _hasFarmEverBeenVisible = true;
+            }
+            btnFarm.Visibility = _hasFarmEverBeenVisible ? Visibility.Visible : Visibility.Collapsed;
+
+            if (_cookieCount >= minePrijs)
+            {
+                _hasMineEverBeenVisible = true;
+            }
+            btnMine.Visibility = _hasMineEverBeenVisible ? Visibility.Visible : Visibility.Collapsed;
+
+            if (_cookieCount >= factoryPrijs)
+            {
+                _hasFactoryEverBeenVisible = true;
+            }
+            btnFactory.Visibility = _hasFactoryEverBeenVisible ? Visibility.Visible : Visibility.Collapsed;
+
+            if (_cookieCount >= bankPrijs)
+            {
+                _hasBankEverBeenVisible = true;
+            }
+            btnBank.Visibility = _hasBankEverBeenVisible ? Visibility.Visible : Visibility.Collapsed;
+
+            if (_cookieCount >= templePrijs)
+            {
+                _hasTempleEverBeenVisible = true;
+            }
+            btnTemple.Visibility = _hasTempleEverBeenVisible ? Visibility.Visible : Visibility.Collapsed;
 
 
 
@@ -301,9 +340,11 @@ namespace cookieklicker2
             txtBankCost.Text = "Bank: " + FormatNumber(bankPrijs);
             txtTempleCost.Text = "Temple: " + FormatNumber(templePrijs);
         }
-
         private string FormatNumber(double num)
         {
+            NumberFormatInfo nfi = new NumberFormatInfo();
+            nfi.NumberGroupSeparator = " ";
+
             if (num >= 1e18)
             {
                 return Math.Round(num / 1e18, 3).ToString("0.###") + " Quintillion";
@@ -312,7 +353,6 @@ namespace cookieklicker2
             {
                 return Math.Round(num / 1e15, 3).ToString("0.###") + " Quadrillion";
             }
-
             else if (num >= 1e12)
             {
                 return Math.Round(num / 1e12, 3).ToString("0.###") + " Triljoen";
@@ -325,11 +365,17 @@ namespace cookieklicker2
             {
                 return Math.Round(num / 1e6, 3).ToString("0.###") + " Miljoen";
             }
+            else if (num >= 1000)
+            {
+                return num.ToString("N0", nfi);
+            }
             else
             {
                 return Math.Round(num).ToString();
             }
         }
+
+
 
         private void UpdateCookieCount()
         {
@@ -374,9 +420,9 @@ namespace cookieklicker2
 
         private void UpdateCookiesPerSecond()
         {
-            double cookiesPerSecond = _cursorCount * 0.1 + _grandmaCount * 1 + _farmCount * 8 + _mineCount * 47 + _factoryCount * 260 + _templeCount * 7800 + _bankCount *1400;
-            txtCookiesPerSecond.Text = string.Format("{0:0.0}", cookiesPerSecond) + " cookies/second";
-            
+            double cookiesPerSecond = _cursorCount * 0.1 + _grandmaCount * 1 + _farmCount * 8 + _mineCount * 47 + _factoryCount * 260 + _templeCount * 7800 + _bankCount * 1400;
+            txtCookiesPerSecond.Text = FormatNumber(cookiesPerSecond) + " cookies/second";
         }
+
     }
 }

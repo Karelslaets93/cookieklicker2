@@ -30,7 +30,9 @@
                     <TextBlock x:Name="txtCookieLabel" Text="Cookies" HorizontalAlignment="Center" VerticalAlignment="Top"  FontSize="30" FontWeight="Bold" Foreground="Yellow"/>
                     <Image x:Name="imgCookie" Source="C:\\Users\\karel\\Documents\\c#\\cookieklicker2\\cookieklicker2\\CookieClickerAfb\\cookie.png" MouseDown="imgCookie_MouseDown" MouseUp="imgCookie_MouseUp" Width="230" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
                 </StackPanel>
-                <TextBlock x:Name="txtCookiesPerSecond" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="10" FontWeight="Bold" Foreground="Yellow"/>
+                <TextBlock x:Name="txtCookiesPerSecondLabel" Text="0 cookies/second" HorizontalAlignment="Center" VerticalAlignment="Bottom"  FontSize="10" FontWeight="Bold" Foreground="Yellow"/>
+                
+
             </Grid>
         </Viewbox>
 
@@ -47,6 +49,7 @@
                 <StackPanel x:Name="upgradeImagesPanel" Orientation="Vertical"/>
             </ScrollViewer>
         </Grid>
+
 
         <!-- Derde vak -->
         <Viewbox Grid.Column="2">
@@ -80,8 +83,9 @@
             </Border>
 
                 <ScrollViewer Grid.Column="2" Height="300" VerticalScrollBarVisibility="Auto" >
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Stretch">
-                    <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,30,0,10" IsEnabled="False" Click="btnCursor_Click">
+                    <StackPanel Name="BonusStack" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+                        
+                        <Button x:Name="btnCursor" Width="200" Height="50" Margin="0,50,0,10" IsEnabled="False" Click="btnCursor_Click">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\Cursor.png" Width="20" Height="20"/>
@@ -200,6 +204,12 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
+                        <Button x:Name="btnBonusStore" Width="200" Height="50" Click="btnBonusStore_Click" Background="Green" IsEnabled="False">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="C:\Users\karel\Documents\c#\cookieklicker2\cookieklicker2\CookieClickerAfb\bonus.png" Width="20" Height="20"/>
+                                <TextBlock Text="Bonus Store" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </ScrollViewer>
 
